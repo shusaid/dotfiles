@@ -42,7 +42,7 @@ function cd(){
 
 # cdなしでディレクトリ移動、なおかつどこからでも移動できるように
 setopt AUTO_CD
-cdpath=(.. ~ ~/src)
+cdpath=(.. ~ ~/Dropbox/src)
 
 # No beep
 setopt NO_BEEP
@@ -239,6 +239,9 @@ alias src='source'
 
 alias ..='cd ../'
 
+alias sdeploy='be cap staging deploy'
+alias pdeploy='be cap production deploy'
+
 # bundle
 alias be='bundle exec'
 alias bi='bundle install --path vendor/bundle'
@@ -251,6 +254,9 @@ alias dhtrk='cd ~/workspace/hataraku_vivivit/vccw/www/wordpress/wp-content/theme
 alias shtrk='cd ~/workspace/hataraku_vivivit/vccw/www/wordpress/wp-content/themes/hatarakusp'
 
 alias sshtrk="sudo ssh -i ~/.ssh/hataraku.pem ec2-user@52.69.25.21"
+
+## hinofu
+alias hinofu='cd ~/workspace/hinofu'
 
 # rをR言語向けに確保
 disable r

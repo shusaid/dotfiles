@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOT_FILES=( .gemrc .zshrc .zprofile .bashrc .bash_profile .tmux.conf .tmux .vimrc .gvimrc .gitconfig .gitignore .zshrc.antigen )
-PATHES="src/github.com/shusaid/dotfiles"
+PATHES="Dropbox/src/github.com/shusaid/dotfiles"
 
 for file in ${DOT_FILES[@]}
 do
@@ -14,7 +14,7 @@ do
       echo "既にファイルが存在します！: $file"
     fi
   else
-    ln -s $HOME/$PATHES/$file $HOME/$file
+    ln -fs $HOME/$PATHES/$file $HOME/$file
     echo "シンボリックリンクを貼りました！: $file"
   fi
 done
