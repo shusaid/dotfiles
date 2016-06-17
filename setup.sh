@@ -24,11 +24,11 @@ REMAP_FILE=( private.xml )
 
 for rfile in ${REMAP_FILE[@]}
 do
-  if [ -a $HOME/Library/Application\ Support/KeyRemap4MacBook/$rfile ]; then
-    rm -f $HOME/Library/Application\ Support/KeyRemap4MacBook/$rfile
-    ln -s $HOME/$PATHES/$rfile $HOME/Library/Application\ Support/KeyRemap4MacBook/$rfile
+  if [ -a $HOME/Library/Application\ Support/Karabiner/$rfile ]; then
+    rm -f $HOME/Library/Application\ Support/Karabiner/$rfile
+    ln -s $HOME/$PATHES/$rfile $HOME/Library/Application\ Support/Karabiner/$rfile
     echo "$rfile のシンボリックリンク貼ったよ"
   else
-    echo "KeyRemap4MacBookがないでござる"
+    echo "Karabinerがないでござる"
   fi
 done

@@ -255,8 +255,15 @@ alias shtrk='cd ~/workspace/hataraku_vivivit/vccw/www/wordpress/wp-content/theme
 
 alias sshtrk="sudo ssh -i ~/.ssh/hataraku.pem ec2-user@52.69.25.21"
 
+## corporate vivivit
+alias cvivivit='cd ~/Dropbox/src/github.com/shusay/cvivivit/www/wordpress/wp-content/themes/cvivivit'
+
+
 ## hinofu
 alias hinofu='cd ~/workspace/hinofu'
+
+## rm to trash
+alias rm='trash'
 
 # rをR言語向けに確保
 disable r

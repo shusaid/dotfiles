@@ -4,3 +4,8 @@
 *.sw[po]
 .vim/bundle
 .gitconfig
+
+# directory
+twentyfifteen
+twentyfourteen
+twentysixteen
