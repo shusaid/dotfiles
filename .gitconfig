@@ -40,4 +40,6 @@
 [ghq]
   root = ~/Dropbox/src
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
+[pack]
+  threads = 4

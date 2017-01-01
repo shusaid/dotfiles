@@ -32,3 +32,30 @@ do
     echo "Karabinerがないでござる"
   fi
 done
+
+# karabiner-elements
+REMAP_FILE_2=( karabiner.json )
+
+for rfile2 in ${REMAP_FILE_2[@]}
+do
+  if [ -a $HOME/.karabiner.d/configuration/$rfile2 ]; then
+    rm -f $HOME/.karabiner.d/configuration/$rfile2
+    ln -s $HOME/$PATHES/$rfile2 $HOME/.karabiner.d/configuration/$rfile2
+    echo "$rfile2 のシンボリックリンク貼りました！"
+  else
+    echo "karabiner-elementsがありません"
+  fi
+done
+
+REMAP_FILE_3=( init.lua )
+
+for rfile3 in ${REMAP_FILE_3[@]}
+do
+  if [ -a $HOME/.karabiner.d/configuration/$rfile3 ]; then
+    rm -f $HOME/.karabiner.d/configuration/$rfile3
+    ln -s $HOME/$PATHES/$rfile3 $HOME/.hammerspoon/$rfile3
+    echo "$rfile3 のシンボリックリンク貼りました！"
+  else
+    echo "$rfile3がありません"
+  fi
+done

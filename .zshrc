@@ -269,9 +269,9 @@ alias rm='trash'
 disable r
 
 # zsh-notify
-source ~/.zsh/zsh-notify/notify.plugin.zsh
-export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
-export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+# source ~/.zsh/zsh-notify/notify.plugin.zsh
+# export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
+# export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 
 # ghq
 function peco-src () {
