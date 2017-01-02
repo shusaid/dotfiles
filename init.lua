@@ -15,9 +15,36 @@ local function remapKey(modifiers, key, kCode)
    hs.hotkey.bind(modifiers, key, kCode, nil, kCode)
 end
 
-basicLayout = hs.eventtap.new({ hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp }, function(event)
-
-end)
+--[[
+remapKey({}, 0, kCode(31))
+remapKey({}, 11, kCode(33))
+remapKey({}, 8, kCode(40))
+remapKey({}, 43, kCode(35))
+remapKey({}, 2, kCode(14))
+remapKey({}, 14, kCode(37))
+remapKey({}, 3, kCode(0))
+remapKey({}, 5, kCode(3))
+remapKey({}, 4, kCode(11))
+remapKey({}, 34, kCode(4))
+remapKey({}, 38, kCode(17))
+remapKey({}, 40, kCode(15))
+remapKey({}, 37, kCode(45))
+remapKey({}, 45, kCode(2))
+remapKey({}, 31, kCode(8))
+remapKey({}, 35, kCode(16))
+remapKey({}, 47, kCode(9))
+remapKey({}, 12, kCode(7))
+remapKey({}, 15, kCode(6))
+remapKey({}, 1, kCode(34))
+remapKey({}, 41, kCode(1))
+remapKey({}, 44, kCode(43))
+remapKey({}, 17, kCode(38))
+remapKey({}, 32, kCode(5))
+remapKey({}, 9, kCode(32))
+remapKey({}, 7, kCode(47))
+remapKey({}, 16, kCode(12))
+remapKey({}, 6, kCode(41))
+]]
 
 -------------- set Polyfil
 hs.eventtap.keyStroke = function(mods, num)
@@ -89,6 +116,51 @@ kanaMode:bind({}, 34, function()
     hs.eventtap.keyStroke({}, 123)
 end)
 
+-- l to ctrl + ↑ mission control
+kanaMode:bind({'ctrl'}, 37, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'ctrl'}, 126)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'ctrl'}, 126)
+end)
+
+-- for shift
+-- a to →
+kanaMode:bind({'shift'}, 0, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 124)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 124)
+end)
+
+-- e to ↓
+kanaMode:bind({'shift'}, 14, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 125)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 125)
+end)
+
+-- l to ↑
+kanaMode:bind({'shift'}, 37, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 126)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 126)
+end)
+
+-- i to ←
+kanaMode:bind({'shift'}, 34, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 123)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 123)
+end)
 
 ---------
 -- Scrolls
@@ -130,6 +202,23 @@ kanaMode:bind({}, 15, function()
     hs.eventtap.keyStroke({}, 119)
 end)
 
+-- n to ctrl + pageDown (for webkit)
+kanaMode:bind({'ctrl'}, 45, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'ctrl'}, 121)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'ctrl'}, 121)
+end)
+
+-- c to ctrl + pageup (for webkit)
+kanaMode:bind({'ctrl'}, 8, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'ctrl'}, 116)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'ctrl'}, 116)
+end)
 
 ---------
 -- keys
