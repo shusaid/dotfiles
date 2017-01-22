@@ -315,15 +315,13 @@ eisuuMode:bind({}, 16, function()
 end)
 
 -- @ to ?
---[[
-eisuuMode:bind({'shift'}, 16, function()
+eisuuMode:bind({}, 33, function()
     eisuuMode.triggered = true
     hs.eventtap.keyStroke({'shift'}, 44)
   end, nil, function()
     eisuuMode.triggered = true
     hs.eventtap.keyStroke({'shift'}, 44)
 end)
-]]
 
 -- c to /
 eisuuMode:bind({}, 8, function()

@@ -47,12 +47,12 @@ do
   fi
 done
 
-REMAP_FILE_3=( init.lua )
+REMAP_FILE_3=( init.lua _sx.lua _kana.lua _eisuu.lua )
 
 for rfile3 in ${REMAP_FILE_3[@]}
 do
-  if [ -a $HOME/.karabiner.d/configuration/$rfile3 ]; then
-    rm -f $HOME/.karabiner.d/configuration/$rfile3
+  if [ -a $HOME/.hammerspoon/$rfile3 ]; then
+    rm -f $HOME/.hammerspoon/$rfile3
     ln -s $HOME/$PATHES/$rfile3 $HOME/.hammerspoon/$rfile3
     echo "$rfile3 のシンボリックリンク貼りました！"
   else
