@@ -1,3 +1,19 @@
+local counter = 0
+local watcher
+watcher = hs.eventtap.new({hs.eventtap.event.types.keyDown, hs.eventtap.event.types.keyUp}, function(ev)
+    local keycode = ev:getKeyCode()
+    local labels = {
+        [hs.eventtap.event.types.keyDown] = "down",
+        [hs.eventtap.event.types.keyUp] = "up",
+    }
+    print(labels[ev:getType()], keycode, ev:getCharacters(), hs.keycodes.map[keycode])
+    counter = counter + 1
+    if counter == 5 then
+        watcher:stop()
+    end
+    return false
+end):start()
+
 ------------------------------------------------------------
 -- Basic Layout
 ------------------------------------------------------------
@@ -89,6 +105,15 @@ kanaMode:bind({}, 0, function()
     hs.eventtap.keyStroke({}, 124)
 end)
 
+-- shift + a to → + shift
+kanaMode:bind({'shift'}, 0, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 124)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 124)
+end)
+
 -- e to ↓
 kanaMode:bind({}, 14, function()
     kanaMode.triggered = true
@@ -96,6 +121,15 @@ kanaMode:bind({}, 14, function()
   end, nil, function()
     kanaMode.triggered = true
     hs.eventtap.keyStroke({}, 125)
+end)
+
+-- shift + e to ↓ + shift
+kanaMode:bind({'shift'}, 14, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 125)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 125)
 end)
 
 -- l to ↑
@@ -107,6 +141,15 @@ kanaMode:bind({}, 37, function()
     hs.eventtap.keyStroke({}, 126)
 end)
 
+-- shift + l to ↑ + shift
+kanaMode:bind({'shift'}, 37, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 126)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 126)
+end)
+
 -- i to ←
 kanaMode:bind({}, 34, function()
     kanaMode.triggered = true
@@ -114,6 +157,15 @@ kanaMode:bind({}, 34, function()
   end, nil, function()
     kanaMode.triggered = true
     hs.eventtap.keyStroke({}, 123)
+end)
+
+-- shift + i to ← + shift
+kanaMode:bind({'shift'}, 34, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 123)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 123)
 end)
 
 -- l to ctrl + ↑ mission control
@@ -278,6 +330,23 @@ kanaMode:bind({}, 1, function()
     hs.eventtap.keyStroke({}, 36)
 end)
 
+-- x to esc
+kanaMode:bind({}, 7, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 53)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({}, 53)
+end)
+
+-- cmd + forwardback
+kanaMode:bind({'cmd'}, 49, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'cmd'}, 51)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'cmd'}, 51)
+end)
 
 ---------------
 
@@ -465,6 +534,26 @@ eisuuMode:bind({}, 35, function()
   end, nil, function()
     eisuuMode.triggered = true
     hs.eventtap.keyStroke({}, 69)
+end)
+
+-- : to _
+eisuuMode:bind({}, 39, function()
+    eisuuMode.triggered = true
+    hs.eventtap.keyStroke({}, 94)
+  end, nil, function()
+    eisuuMode.triggered = true
+    hs.eventtap.keyStroke({}, 94)
+end)
+
+---------
+-- Design Tool
+---------
+eisuuMode:bind({'cmd'}, 35, function()
+    eisuuMode.triggered = true
+    hs.eventtap.keyStroke({'cmd'}, 69)
+  end, nil, function()
+    eisuuMode.triggered = true
+    hs.eventtap.keyStroke({'cmd'}, 69)
 end)
 
 ---------------

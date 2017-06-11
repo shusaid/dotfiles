@@ -42,7 +42,7 @@ function cd(){
 
 # cdなしでディレクトリ移動、なおかつどこからでも移動できるように
 setopt AUTO_CD
-cdpath=(.. ~ ~/Dropbox/src)
+cdpath=(.. ~ ~/src)
 
 # No beep
 setopt NO_BEEP
@@ -256,7 +256,7 @@ alias shtrk='cd ~/workspace/hataraku_vivivit/vccw/www/wordpress/wp-content/theme
 alias sshtrk="sudo ssh -i ~/.ssh/hataraku.pem ec2-user@52.69.25.21"
 
 ## corporate vivivit
-alias cvivivit='cd ~/Dropbox/src/github.com/shusay/cvivivit/www/wordpress/wp-content/themes/cvivivit'
+alias cvivivit='cd ~/src/github.com/shusay/cvivivit/www/wordpress/wp-content/themes/cvivivit'
 
 
 ## hinofu

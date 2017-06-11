@@ -1,7 +1,43 @@
 {
+    "global": {
+        "check_for_updates_on_startup": true,
+        "show_in_menu_bar": true,
+        "show_profile_name_in_menu_bar": false
+    },
     "profiles": [
         {
-            "devices": [],
+            "devices": [
+                {
+                    "disable_built_in_keyboard_if_exists": true,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 13,
+                        "vendor_id": 1278
+                    },
+                    "ignore": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 34304,
+                        "vendor_id": 1452
+                    },
+                    "ignore": true
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 632,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false
+                }
+            ],
             "fn_function_keys": {
                 "f1": "vk_consumer_brightness_down",
                 "f10": "mute",
@@ -16,7 +52,7 @@
                 "f8": "vk_consumer_play",
                 "f9": "vk_consumer_next"
             },
-            "name": "Default profile",
+            "name": "SX_layout",
             "selected": true,
             "simple_modifications": {
                 "a": "o",

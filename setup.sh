@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOT_FILES=( .gemrc .zshrc .zprofile .bashrc .bash_profile .tmux.conf .tmux .vimrc .gvimrc .gitconfig .gitignore .zshrc.antigen )
-PATHES="Dropbox/src/github.com/shusaid/dotfiles"
+PATHES="$HOME/src/github.com/shusaid/dotfiles"
 
 for file in ${DOT_FILES[@]}
 do
@@ -14,22 +14,8 @@ do
       echo "既にファイルが存在します！: $file"
     fi
   else
-    ln -fs $HOME/$PATHES/$file $HOME/$file
+    ln -fs $PATHES/$file $HOME/$file
     echo "シンボリックリンクを貼りました！: $file"
-  fi
-done
-
-# private_xml
-REMAP_FILE=( private.xml )
-
-for rfile in ${REMAP_FILE[@]}
-do
-  if [ -a $HOME/Library/Application\ Support/Karabiner/$rfile ]; then
-    rm -f $HOME/Library/Application\ Support/Karabiner/$rfile
-    ln -s $HOME/$PATHES/$rfile $HOME/Library/Application\ Support/Karabiner/$rfile
-    echo "$rfile のシンボリックリンク貼ったよ"
-  else
-    echo "Karabinerがないでござる"
   fi
 done
 
@@ -38,9 +24,9 @@ REMAP_FILE_2=( karabiner.json )
 
 for rfile2 in ${REMAP_FILE_2[@]}
 do
-  if [ -a $HOME/.karabiner.d/configuration/$rfile2 ]; then
-    rm -f $HOME/.karabiner.d/configuration/$rfile2
-    ln -s $HOME/$PATHES/$rfile2 $HOME/.karabiner.d/configuration/$rfile2
+  if [ -a $HOME/.config/karabiner/$rfile2 ]; then
+    rm -f $HOME/.config/karabiner/$rfile2
+    ln -s $PATHES/$rfile2 $HOME/.config/karabiner/$rfile2
     echo "$rfile2 のシンボリックリンク貼りました！"
   else
     echo "karabiner-elementsがありません"
@@ -53,7 +39,7 @@ for rfile3 in ${REMAP_FILE_3[@]}
 do
   if [ -a $HOME/.hammerspoon/$rfile3 ]; then
     rm -f $HOME/.hammerspoon/$rfile3
-    ln -s $HOME/$PATHES/$rfile3 $HOME/.hammerspoon/$rfile3
+    ln -s $PATHES/$rfile3 $HOME/.hammerspoon/$rfile3
     echo "$rfile3 のシンボリックリンク貼りました！"
   else
     echo "$rfile3がありません"
