@@ -105,15 +105,6 @@ kanaMode:bind({}, 0, function()
     hs.eventtap.keyStroke({}, 124)
 end)
 
--- shift + a to → + shift
-kanaMode:bind({'shift'}, 0, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 124)
-  end, nil, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 124)
-end)
-
 -- e to ↓
 kanaMode:bind({}, 14, function()
     kanaMode.triggered = true
@@ -121,15 +112,6 @@ kanaMode:bind({}, 14, function()
   end, nil, function()
     kanaMode.triggered = true
     hs.eventtap.keyStroke({}, 125)
-end)
-
--- shift + e to ↓ + shift
-kanaMode:bind({'shift'}, 14, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 125)
-  end, nil, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 125)
 end)
 
 -- l to ↑
@@ -141,15 +123,6 @@ kanaMode:bind({}, 37, function()
     hs.eventtap.keyStroke({}, 126)
 end)
 
--- shift + l to ↑ + shift
-kanaMode:bind({'shift'}, 37, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 126)
-  end, nil, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 126)
-end)
-
 -- i to ←
 kanaMode:bind({}, 34, function()
     kanaMode.triggered = true
@@ -157,15 +130,6 @@ kanaMode:bind({}, 34, function()
   end, nil, function()
     kanaMode.triggered = true
     hs.eventtap.keyStroke({}, 123)
-end)
-
--- shift + i to ← + shift
-kanaMode:bind({'shift'}, 34, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 123)
-  end, nil, function()
-    kanaMode.triggered = true
-    hs.eventtap.keyStroke({'shift'}, 123)
 end)
 
 -- l to ctrl + ↑ mission control
@@ -181,37 +145,37 @@ end)
 -- a to →
 kanaMode:bind({'shift'}, 0, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 124)
+    hs.eventtap.keyStroke({'shift'}, 124)
   end, nil, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 124)
+    hs.eventtap.keyStroke({'shift'}, 124)
 end)
 
 -- e to ↓
 kanaMode:bind({'shift'}, 14, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 125)
+    hs.eventtap.keyStroke({'shift'}, 125)
   end, nil, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 125)
+    hs.eventtap.keyStroke({'shift'}, 125)
 end)
 
 -- l to ↑
 kanaMode:bind({'shift'}, 37, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 126)
+    hs.eventtap.keyStroke({'shift'}, 126)
   end, nil, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 126)
+    hs.eventtap.keyStroke({'shift'}, 126)
 end)
 
 -- i to ←
 kanaMode:bind({'shift'}, 34, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 123)
+    hs.eventtap.keyStroke({'shift'}, 123)
   end, nil, function()
     kanaMode.triggered = true
-    hs.eventtap.keyStroke({}, 123)
+    hs.eventtap.keyStroke({'shift'}, 123)
 end)
 
 ---------
