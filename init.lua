@@ -312,6 +312,15 @@ kanaMode:bind({'cmd'}, 49, function()
     hs.eventtap.keyStroke({'cmd'}, 51)
 end)
 
+-- &
+kanaMode:bind({}, 11, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 22)
+  end, nil, function()
+    kanaMode.triggered = true
+    hs.eventtap.keyStroke({'shift'}, 22)
+end)
+
 ---------------
 
 kana = hs.hotkey.bind({}, 104,
