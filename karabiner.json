@@ -8,7 +8,7 @@
         {
             "complex_modifications": {
                 "parameters": {
-                    "basic.to_if_alone_timeout_milliseconds": 1000
+                    "basic.to_if_alone_timeout_milliseconds": 2000
                 },
                 "rules": [
                     {
@@ -23,14 +23,6 @@
                                             "name": "kana_modifier",
                                             "value": 1
                                         }
-                                    },
-                                    {
-                                        "key_code": "lang1"
-                                    }
-                                ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "lang1"
                                     }
                                 ],
                                 "to_after_key_up": [
@@ -39,6 +31,11 @@
                                             "name": "kana_modifier",
                                             "value": 0
                                         }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "lang1"
                                     }
                                 ],
                                 "type": "basic"
@@ -55,17 +52,17 @@
                                         }
                                     }
                                 ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "lang2"
-                                    }
-                                ],
                                 "to_after_key_up": [
                                     {
                                         "set_variable": {
                                             "name": "eisuu_modifier",
                                             "value": 0
                                         }
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "lang2"
                                     }
                                 ],
                                 "type": "basic"
@@ -1049,7 +1046,10 @@
                         "vendor_id": 1278
                     },
                     "ignore": false,
-                    "simple_modifications": {}
+                    "simple_modifications": {
+                        "japanese_pc_nfer": "japanese_eisuu",
+                        "japanese_pc_xfer": "japanese_kana"
+                    }
                 }
             ],
             "fn_function_keys": {

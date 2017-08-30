@@ -20,7 +20,7 @@ do
 done
 
 # karabiner-elements
-REMAP_FILE_2=( karabiner.json )
+REMAP_FILE_2=( .karabiner.json )
 
 for rfile2 in ${REMAP_FILE_2[@]}
 do
@@ -33,7 +33,7 @@ do
   fi
 done
 
-REMAP_FILE_3=( init.lua _sx.lua _kana.lua _eisuu.lua )
+REMAP_FILE_3=( .init.lua ._sx.lua ._kana.lua ._eisuu.lua )
 
 for rfile3 in ${REMAP_FILE_3[@]}
 do
