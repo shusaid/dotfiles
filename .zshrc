@@ -1,20 +1,111 @@
-# direnv
-eval "$(direnv hook zsh)"
-
 # vim
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias v='vim'
 
-# antigen
-source $HOME/.zshrc.antigen
+# docker
+alias dockers='CURPATH=$(pwd) && cd ~/docker/vivivit/dev && docker-compose start && cd $CURPATH'
+alias dockerq='CURPATH=$(pwd) && cd ~/docker/vivivit/dev && docker-compose stop && cd $CURPATH'
+alias dockerps='CURPATH=$(pwd) && cd ~/docker/vivivit/dev && docker-compose ps && cd $CURPATH'
+
+source /usr/local/opt/zplug/init.zsh
+
+# Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+
+# Use the package as a command
+# And accept glob patterns (e.g., brace, wildcard, ...)
+zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
+
+# Can manage everything e.g., other person's zshrc
+zplug "tcnksm/docker-alias", use:zshrc
+
+# Disable updates using the "frozen" tag
+zplug "k4rthik/git-cal", as:command, frozen:1
+
+# Grab binaries from GitHub Releases
+# and rename with the "rename-to:" tag
+zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf, \
+    use:"*darwin*amd64*"
+
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git",   from:oh-my-zsh
+
+# Also prezto
+zplug "modules/prompt", from:prezto
+
+# Load if "if" tag returns true
+zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+
+# Run a command after a plugin is installed/updated
+# Provided, it requires to set the variable like the following:
+# ZPLUG_SUDO_PASSWORD="********"
+# zplug "jhawthorn/fzy", \
+#     as:command, \
+#     rename-to:fzy, \
+#     hook-build:"make && sudo make install"
+
+# Supports checking out a specific branch/tag/commit
+zplug "b4b4r07/enhancd", at:v1
+zplug "mollifier/anyframe", at:4c23cb60
+
+# Can manage gist file just like other packages
+zplug "b4b4r07/79ee61f7c140c63d2786", \
+    from:gist, \
+    as:command, \
+    use:get_last_pane_path.sh
+
+# Support bitbucket
+zplug "b4b4r07/hello_bitbucket", \
+    from:bitbucket, \
+    as:command, \
+    use:"*.sh"
+
+# Rename a command with the string captured with `use` tag
+zplug "b4b4r07/httpstat", \
+    as:command, \
+    use:'(*).sh', \
+    rename-to:'$1'
+
+# Group dependencies
+# Load "emoji-cli" if "jq" is installed in this example
+zplug "stedolan/jq", \
+    from:gh-r, \
+    as:command, \
+    rename-to:jq
+zplug "b4b4r07/emoji-cli", \
+    on:"stedolan/jq"
+# Note: To specify the order in which packages should be loaded, use the defer
+#       tag described in the next section
+
+# Set the priority when loading
+# e.g., zsh-syntax-highlighting must be loaded
+# after executing compinit command and sourcing other plugins
+# (If the defer tag is given 2 or above, run after compinit command)
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# Can manage local plugins
+zplug "~/.zsh", from:local
+
+# Load theme file
+zplug 'dracula/zsh', as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
+
+#-------------------------------------------#
 
 # Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 # completion
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
@@ -229,7 +320,6 @@ PROMPT='%F{37}✬ %f%F{254}%#@%m%f%F{65} * %f%F{254}%c%f%F{33}%f ➧ %f'
 # ----- alias ----- #
 # cmd
 alias g='git'
-alias tmux="TERM=xterm-256color tmux"
 
 alias la='ls -a'
 alias ll='ls -l'
@@ -239,39 +329,18 @@ alias src='source'
 
 alias ..='cd ../'
 
-alias sdeploy='be cap staging deploy'
-alias pdeploy='be cap production deploy'
-
 # bundle
 alias be='bundle exec'
-alias bi='bundle install --path vendor/bundle'
+alias bi='bundle install'
+
+# rmtrash
+alias rm='rmtrash'
 
 # rbenv
 alias re='rbenv exec'
 
-## hataraku_vivivit
-alias dhtrk='cd ~/workspace/hataraku_vivivit/vccw/www/wordpress/wp-content/themes/hatarakudesktop'
-alias shtrk='cd ~/workspace/hataraku_vivivit/vccw/www/wordpress/wp-content/themes/hatarakusp'
-
-alias sshtrk="sudo ssh -i ~/.ssh/hataraku.pem ec2-user@52.69.25.21"
-
-## corporate vivivit
-alias cvivivit='cd ~/src/github.com/shusay/cvivivit/www/wordpress/wp-content/themes/cvivivit'
-
-
-## hinofu
-alias hinofu='cd ~/workspace/hinofu'
-
-## rm to trash
-alias rm='trash'
-
 # rをR言語向けに確保
 disable r
-
-# zsh-notify
-# source ~/.zsh/zsh-notify/notify.plugin.zsh
-# export SYS_NOTIFIER="/usr/local/bin/terminal-notifier"
-# export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
 
 # ghq
 function peco-src () {

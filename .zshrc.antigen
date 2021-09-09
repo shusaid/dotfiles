@@ -1,9 +1,0 @@
-source ~/.zsh/antigen/antigen.zsh
-
-antigen-bundle git
-antigen-bundle autojump
-antigen-bundle heroku
-antigen-bundle history
-
-# Profile
-antigen bundle zsh-users/zsh-syntax-highlighting

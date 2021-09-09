@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .gemrc .zshrc .zprofile .bashrc .bash_profile .tmux.conf .tmux .vimrc .gvimrc .gitconfig .gitignore .zshrc.antigen )
+DOT_FILES=( .gemrc .zshrc .zprofile .bashrc .bash_profile .gitconfig .gitignore )
 PATHES="$HOME/src/github.com/shusaid/dotfiles"
 
 for file in ${DOT_FILES[@]}
@@ -20,7 +20,7 @@ do
 done
 
 # karabiner-elements
-REMAP_FILE_2=( .karabiner.json )
+REMAP_FILE_2=( karabiner.json )
 
 for rfile2 in ${REMAP_FILE_2[@]}
 do
@@ -30,18 +30,5 @@ do
     echo "$rfile2 のシンボリックリンク貼りました！"
   else
     echo "karabiner-elementsがありません"
-  fi
-done
-
-REMAP_FILE_3=( .init.lua ._sx.lua ._kana.lua ._eisuu.lua )
-
-for rfile3 in ${REMAP_FILE_3[@]}
-do
-  if [ -a $HOME/.hammerspoon/$rfile3 ]; then
-    rm -f $HOME/.hammerspoon/$rfile3
-    ln -s $PATHES/$rfile3 $HOME/.hammerspoon/$rfile3
-    echo "$rfile3 のシンボリックリンク貼りました！"
-  else
-    echo "$rfile3がありません"
   fi
 done

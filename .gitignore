@@ -5,10 +5,5 @@
 .vim/bundle
 .gitconfig
 
-# directory
-twentyfifteen
-twentyfourteen
-twentysixteen
-
 # vscode
 .vscode
