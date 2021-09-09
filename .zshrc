@@ -316,7 +316,7 @@ function _update_vcs_info_msg() {
     RPROMPT="$prompt"
 }
 add-zsh-hook precmd _update_vcs_info_msg
-PROMPT='%F{37}✬ %f%F{254}%#@%m%f%F{65} * %f%F{254}%c%f%F{33}%f ➧ %f'
+PROMPT='%F{37}✬ %f%F{254}%c%f%F{33}%f ➧ %f'
 # ----- alias ----- #
 # cmd
 alias g='git'
