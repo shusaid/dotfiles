@@ -6,7 +6,7 @@ $character\
 """
 
 [git_branch]
-format = "💻 $branch "
+format = "＊ $branch "
 
 [git_status]
 format = "$conflicted$ahead$behind$diverged$untracked$stashed$modified$staged$renamed$deleted"
