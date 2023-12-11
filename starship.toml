@@ -1,26 +1,25 @@
 format = """
-$directory \
+$directory\
 $git_status \
 $git_branch\
 $character\
 """
 
 [git_branch]
-format = "$branch "
-symbol = "💻 "
+format = "💻 $branch "
 
 [git_status]
 format = "$conflicted$ahead$behind$diverged$untracked$stashed$modified$staged$renamed$deleted"
-conflicted = "💥"
-ahead = "🏎💨"
-behind = "😰"
-diverged = "😵"
-untracked = "💭"
-stashed = "📦"
-modified = "🔁"
-staged = "⬆️"
-renamed = "🏷"
-deleted = "🗑"
+conflicted = " 💥"
+ahead = " 🏎💨"
+behind = " 😰"
+diverged = " 😵"
+untracked = " 💭"
+stashed = " 📦"
+modified = " 🔁"
+staged = " ⬆"
+renamed = " 🏷"
+deleted = " 🗑"
 
 [character]
 format = "👉 "
