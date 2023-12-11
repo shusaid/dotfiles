@@ -1,15 +1,16 @@
 format = """
 $directory \
-$git_branch\
 $git_status \
+$git_branch\
 $character\
 """
 
 [git_branch]
-symbol = "⛓ "
+format = "$branch "
+symbol = "💻 "
 
 [git_status]
-#Gitのステータス表示用アイコン
+format = "$conflicted$ahead$behind$diverged$untracked$stashed$modified$staged$renamed$deleted"
 conflicted = "💥"
 ahead = "🏎💨"
 behind = "😰"
@@ -17,7 +18,7 @@ diverged = "😵"
 untracked = "💭"
 stashed = "📦"
 modified = "🔁"
-staged = '⬆️'
+staged = "⬆️"
 renamed = "🏷"
 deleted = "🗑"
 
