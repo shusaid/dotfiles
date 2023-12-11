@@ -2,17 +2,19 @@ export LANG=ja_JP.UTF-8
 export TERM="xterm-256color"
 export MINIO_HOST=localhost
 
-BASIC=/usr/local/sbin:/usr/sbin:/usr/bin:/bin:/sbin
-BREW=/usr/local/bin
-RBENV=$HOME/.rbenv/shims
-NODENV=$HOME/.nodenv/bin
-MYSQL=/usr/local/opt/mysql@5.7/bin
-GO=$HOME
-GHQ=$GO/bin
-ZPLUG=$HOME/.zplug
+local BASIC=/usr/local/sbin:/usr/sbin:/usr/bin:/bin:/sbin
+local BREW=/usr/local/bin
+local RBENV=$HOME/.rbenv/shims
+local NODENV=$HOME/.nodenv/bin
+local MYSQL=/usr/local/opt/mysql@5.7/bin
+local GO=$HOME
+local GHQ=$GO/bin
+local ZPLUG=$HOME/.zplug
 
-export PATH=$BREW:$BASIC:$ZPLUG:$RBENV:$NODENV:$MYSQL:$GO:$GHQ:$PATH
+PATH=$BREW:$BASIC:$ZPLUG:$RBENV:$NODENV:$MYSQL:$GO:$GHQ:$PATH
+typeset -U path
+export PATH
 
 # rbenv
-if which rbenv >/dev/null; then eval "$(rbenv init - zsh)"; fi
-if which nodenv >/dev/null; then eval "$(nodenv init - zsh)"; fi
+if command -v rbenv &>/dev/null; then eval "$(rbenv init - zsh)"; fi
+if command -v nodenv &>/dev/null; then eval "$(nodenv init - zsh)"; fi

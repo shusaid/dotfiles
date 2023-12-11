@@ -1,0 +1,31 @@
+format = """
+$directory \
+$git_branch\
+$git_status \
+$character\
+"""
+
+[git_branch]
+symbol = "⛓ "
+
+[git_status]
+#Gitのステータス表示用アイコン
+conflicted = "💥"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "💭"
+stashed = "📦"
+modified = "🔁"
+staged = '⬆️'
+renamed = "🏷"
+deleted = "🗑"
+
+[character]
+format = "👉 "
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style)"
+truncation_length = 2
+truncate_to_repo = false
+truncation_symbol = "…/"
