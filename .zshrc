@@ -333,11 +333,11 @@ alias ..='cd ../'
 alias be='bundle exec'
 alias bi='bundle install'
 
-# rmtrash
-alias rm='rmtrash'
-
 # rbenv
 alias re='rbenv exec'
+
+# devcontainer
+alias dvc='devcontainer'
 
 # rをR言語向けに確保
 disable r
@@ -356,3 +356,14 @@ bindkey '^]' peco-src
 
 HISTSIZE=1000
 HISTTIMEFORMAT='%Y/%m/%d %H:%M:%S'
+
+# githubアカウント切り替え
+function gitmain() {
+  git config --global user.name "shusay"
+  git config --global user.email "sy_tanaka@vivivit.co.jp"
+}
+
+function gitsub() {
+  git config --global user.name "shusaid"
+  git config --global user.email "shusay.t+account1@gmail.com"
+}

@@ -1,18 +1,22 @@
 [user]
-	name = shusay
-	email = sy_tanaka@vivivit.co.jp
+  name = shusay
+  email = sy_tanaka@vivivit.co.jp
+
+[includeIf "gitdir:~/src/github.com/shusaid/"]
+  path = ~/.gitconfig_sub
 
 [color]
   ui=auto
 
 [core]
-	excludesfile = /Users/shusay/.gitignore
+  excludesfile = /Users/shusay/.gitignore
   editor=vim
 
 [alias]
   st = status
   l = log
-  mst = checkout master
+  mst = checkout main
+  mn = checkout main
   br = branch
   co = checkout
   aa = add -A
@@ -23,11 +27,13 @@
   ps = push
 
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 [ghq]
   root = ~/src
 [url "git@github.com:"]
   insteadOf = https://github.com/
 [pack]
   threads = 4
+[pull]
+	ff = only
