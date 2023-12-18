@@ -3,52 +3,51 @@
 ###########
 # Homebrew
 ###########
-echo -e "-----\nCheck Homebrew"
-if [ -f ~/.zshrc ]; then
-  if [ "`echo $PATH | grep '/opt/homebrew/bin'`" ]; then
-    echo '✅ Homebrew PATH already exist'
-  else
-    echo '🙅 Homebrew PATH was not exist\n...update .zshrc'
-    echo 'export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH' >> ~/.zshrc
-    source ~/.zshrc
-  fi
-else
-  echo '🙅 .zshrc was not exist\n...update .zshrc'
-  echo 'export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH' >> ~/.zshrc
-  source ~/.zshrc
-fi
-
-if type "brew" >/dev/null 2>&1; then
-  echo -e "✅ brew already exist"
-else
-  echo -e "🙅 Homebrew was not exist\nPlease install Homebrew"
-  open "https://brew.sh"
-  exit
-fi
+# echo -e "-----\nCheck Homebrew"
+# if [ -f ~/.zshrc ]; then
+#   if [ "`echo $PATH | grep '/opt/homebrew/bin'`" ]; then
+#     echo '✅ Homebrew PATH already exist'
+#   else
+#     echo '🙅 Homebrew PATH was not exist\n...update .zshrc'
+#     echo 'export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH' >> ~/.zshrc
+#     source ~/.zshrc
+#   fi
+# else
+#   echo '🙅 .zshrc was not exist\n...update .zshrc'
+#   echo 'export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH' >> ~/.zshrc
+#   source ~/.zshrc
+# fi
+#
+# if type "brew" >/dev/null 2>&1; then
+#   echo -e "✅ brew already exist"
+# else
+#   echo -e "🙅 Homebrew was not exist\nPlease install Homebrew"
+#   open "https://brew.sh"
+#   exit
+# fi
 
 ###########
 # Install
 ###########
 # Homebrewを使用してzshをインストール
-brew install zsh git wget starship tree trash ghq
+# brew install zsh git wget starship tree trash ghq
 
 # Homebrewでインストールされたzshのパスを取得
-zsh_path="$(brew --prefix)/bin/zsh"
+# zsh_path="$(brew --prefix)/bin/zsh"
 
 # シェルが利用可能なリストにzshのパスを追加（必要な場合のみ）
-if ! grep -q "$zsh_path" /etc/shells; then
-    echo "$zsh_path" | sudo tee -a /etc/shells
-fi
+# if ! grep -q "$zsh_path" /etc/shells; then
+#     echo "$zsh_path" | sudo tee -a /etc/shells
+# fi
 
 # デフォルトのシェルをHomebrew経由のzshに変更
-chsh -s "$zsh_path"
-
-echo "shellを $zsh_path に設定しました。"
+# chsh -s "$zsh_path"
+# echo "shellを $zsh_path に設定しました。"
 
 ###########
 # dotfiles
 ###########
-ghq get https://github.com/shusaid/dotfiles.git
+# ghq get https://github.com/shusaid/dotfiles.git
 
 DOT_FILES=(.zshrc .zprofile .gitconfig .gitignore)
 PATHES="$HOME/src/github.com/shusaid/dotfiles"
