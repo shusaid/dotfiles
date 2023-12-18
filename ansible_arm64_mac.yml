@@ -15,97 +15,14 @@
     homebrew_packages:
       # バージョン管理関係
       - name: git
-      - name: git-lfs
-      - name: svn
       # エディタ関係
-      - name: vim
-      - name: neovim
       - name: wget
       # シェル関係
-      - name: fish
+      - name: zsh
+      - name: starship
       - name: tree
       - name: trash
-      - name: jq
-      - name: z
-      - name: peco
-      # プログラミング言語関係
-      - name: pipenv
-      - name: anyenv
-      - name: deno
-      - name: java
-      - name: clojure/tools/clojure
-      - name: rust
-      # メディア処理関係
-      - name: imagemagick
-      - name: opencv
-    ###############
-    # GUI App List
-    ###############
-    homebrew_cask_packages:
-      # ブラウザ
-      - name: google-chrome
-      - name: firefox
-      # エディタ
-      - name: visual-studio-code
-      # 統合開発環境
-      - name: android-studio
-      - name: processing
-      - name: unity-hub
-      - name: arduino
-      # ターミナル
-      - name: warp
-      # 開発
-      - name: chromedriver
-      - name: docker
-      - name: mamp
-      - name: responsively
-      - name: ngrok/ngrok/ngrok
-      - name: flutter
-      # 配信
-      - name: obs
-      - name: obs-virtualcam
-      # コミュニケーション
-      - name: zoom
-      - name: messenger
-      - name: slack
-      - name: webex
-      - name: discord
-      # 常駐ツール
-      - name: gyazo
-      - name: google-drive
-      - name: deepl
-      - name: grammarly
-      - name: 1password
-      - name: spectacle
-      # タスク管理
-      - name: todoist
-      # メモ
-      - name: notion
-      # Office系ツール
-      - name: chrome-remote-desktop-host
-      # クリエイティブ系
-      - name: blender
-      # ツール
-      - name: vlc
-      - name: balenaetcher
-      - name: protonvpn
-      - name: blackhole-2ch
-    apps:
-      # Apple公式
-      - { name: "Keynote", id: "409183694" }
-      - { name: "Pages", id: "409201541" }
-      - { name: "Numbers", id: "409203825" }
-      - { name: "iMovie", id: "408981434" }
-      - { name: "Compressor", id: "424390742" }
-      - { name: "Motion", id: "434290957" }
-      - { name: "Final Cut Pro", id: "424389933" }
-      # 常駐系アプリ
-      - { name: "RunCat", id: "1429033973" }
-      - { name: "ScreenPointer", id: "1368204906" }
-      - { name: "Paste", id: "967805235" }
-      - { name: "LINE", id: "539883307"}
-      # ツール
-      - { name: "The Unarchiver", id: "425424353"}
+      - name: ghq
   tasks:
     ##########
     # Homebrew
@@ -156,26 +73,16 @@
       block:
         - name: git clone dotfiles
           ansible.builtin.git:
-            repo: git@github.com:shinyaoguri/dotfiles.git
-            dest: '{{ ansible_env.HOME }}/dotfiles'
-        - name: .config/fish mkdir
+            repo: git@github.com:shusaid/dotfiles.git
+            dest: '{{ ansible_env.HOME }}/src/github.com/shusaid/dotfiles'
+        - name: .config/zsh mkdir
           file:
-            path: '{{ ansible_env.HOME}}/.config/fish'
+            path: '{{ ansible_env.HOME}}/.config/zsh'
             state: directory
-        - name: fish-shell config symlinks
+        - name: zsh config symlinks
           file:
-            src: '{{ ansible_env.HOME}}/dotfiles/config.fish'
-            dest: '{{ ansible_env.HOME}}/.config/fish/config.fish'
-            state: link
-            force: yes
-        - name: neovim .config/nvim mkdir
-          file:
-            path: '{{ ansible_env.HOME }}/.config/nvim'
-            state: directory
-        - name: neovim init.vim symlinks
-          file:
-            src: '{{ ansible_env.HOME }}/dotfiles/init.vim'
-            dest: '{{ ansible_env.HOME }}/.config/nvim/init.vim'
+            src: '{{ ansible_env.HOME}}/dotfiles/config.zsh'
+            dest: '{{ ansible_env.HOME}}/.config/fish/config.zsh'
             state: link
             force: yes
     ###############
@@ -187,90 +94,24 @@
       environment:
         HOMEBREW_CASK_OPTS: "--appdir=/Applications"
       with_items: '{{ homebrew_cask_packages }}'
-    ##########
-    # Fonts
-    ##########
-    - name: install font
-      block:
-        - name: install font M-Plus-1
-          community.general.homebrew_cask:
-            name: font-m-plus-1
-            state: present
-        - name: install font M-Plus-1p
-          community.general.homebrew_cask:
-            name: font-m-plus-1p
-            state: present
-        - name: install font M-Plus-1-Code
-          community.general.homebrew_cask:
-            name: font-m-plus-1-code
-            state: present
-        - name: install font font-noto-sans-cjk-jp
-          community.general.homebrew_cask:
-            name: font-noto-sans-cjk-jp
-            state: present  
-        - name: install font font-noto-serif-cjk-jp
-          community.general.homebrew_cask:
-            name: font-noto-serif-cjk-jp
-            state: present
           
     ###################
-    # Fish-Shell Setup
+    # Zsh Setup
     ###################
-    - name: fish-shell setup
+    - name: zsh setup
       block:
-        - name: set fish-shell default
+        - name: set homebrew-zsh default
           become: true
           lineinfile:
             path: /etc/shells
-            regexp: '/opt/homebrew/bin/fish'
+            regexp: '/opt/homebrew/bin/zsh'
             insertafter: '/bin/zsh'
-            line: '/opt/homebrew/bin/fish'    
-        - name: set fish-shell as default
+            line: '/opt/homebrew/bin/zsh'    
+        - name: set zsh as default
           become: true
           user:
             name: "{{ ansible_user_id }}"
-            shell: /opt/homebrew/bin/fish
-        - name: git clone Powerline
-          ansible.builtin.git:
-            repo: git@github.com:powerline/fonts.git
-            dest: '{{ ansible_env.HOME }}/tmp-fonts'
-        - name: install Powerline
-          ansible.builtin.shell: "cd {{ ansible_env.HOME}}/tmp-fonts && ./install.sh"
-          args:
-            executable: /opt/homebrew/bin/fish
-        - name: delete tmp-fonts dir
-          file:
-            dest: '{{ ansible_env.HOME}}/tmp-fonts'
-            state: absent
-        - name: Download fisher plugin manager
-          ansible.builtin.get_url:
-            url: https://git.io/fisher
-            dest: '{{ ansible_env.HOME }}/fisher'            
-        - name: Install fisher plugin manager
-          ansible.builtin.shell: "source {{ ansible_env.HOME }}/fisher && fisher install jorgebucaran/fisher"
-          args:
-            executable: /opt/homebrew/bin/fish
-            creates: '{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish'
-        - name: Delete fisher installer file
-          file:
-            dest: '{{ ansible_env.HOME }}/fisher'
-            state: absent
-        - name: Install z plugin for fish
-          ansible.builtin.shell: "fisher install jethrokuan/z"
-          args:
-            executable: /opt/homebrew/bin/fish
-        - name: Install peco plugin for fish
-          ansible.builtin.shell: "fisher install oh-my-fish/plugin-peco"
-          args:
-            executable: /opt/homebrew/bin/fish
-        - name: Install theme-bobthefish plugin for fish
-          ansible.builtin.shell: "fisher install oh-my-fish/theme-bobthefish"
-          args:
-            executable: /opt/homebrew/bin/fish
-        - name: Install bd plugin for fish
-          ansible.builtin.shell: "fisher install 0rax/fish-bd"
-          args:
-            executable: /opt/homebrew/bin/fish
+            shell: /opt/homebrew/bin/zsh
     # anyenv
     - name: setup anyenv
       block:
@@ -282,11 +123,3 @@
           ansible.builtin.git:
             repo: https://github.com/znz/anyenv-update.git
             dest: '{{ ansible_env.HOME }}/.anyenv/plugins/anyenv-update'
-    # java
-    - name: java setting
-      become: true
-      file:
-        src: '/opt/homebrew/opt/openjdk/libexec/openjdk.jdk'
-        dest: '/Library/Java/JavaVirtualMachines/openjdk.jdk'
-        state: link
-        force: yes
