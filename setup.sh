@@ -39,7 +39,7 @@ fi
 
 echo -e "-----\nAnsible Deploy"
 cd ~
-curl -O -sfSL https://raw.githubusercontent.com/shusaid/dotfiles/master/ansible_arm64_mac.yml?token=GHSAT0AAAAAACLXNG4NEMDD5CBIKNZV2YHIZL7ZWLA
+curl -O -sfSL https://raw.githubusercontent.com/shusaid/dotfiles/master/ansible_arm64_mac.yml
 
 if [ -f ~/ansible_arm64_mac.yml ]; then
   ansible-galaxy collection install community.general
