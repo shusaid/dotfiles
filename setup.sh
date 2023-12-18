@@ -26,28 +26,24 @@ else
   exit
 fi
 
-##########
-# Ansible
-##########
-echo -e "-----\nCheck Ansible"
-if type "ansible" >/dev/null 2>&1; then
-  echo -e "✅ Ansible already exist"
-else
-  echo -e "🙅 ansible was not installed"
-  brew install ansible
+###########
+# Install
+###########
+# Homebrewを使用してzshをインストール
+brew install zsh git wget starship tree trash ghq
+
+# Homebrewでインストールされたzshのパスを取得
+zsh_path="$(brew --prefix)/bin/zsh"
+
+# シェルが利用可能なリストにzshのパスを追加（必要な場合のみ）
+if ! grep -q "$zsh_path" /etc/shells; then
+    echo "$zsh_path" | sudo tee -a /etc/shells
 fi
 
-echo -e "-----\nAnsible Deploy"
-cd ~
-curl -O -sfSL https://raw.githubusercontent.com/shusaid/dotfiles/master/ansible_arm64_mac.yml
+# デフォルトのシェルをHomebrew経由のzshに変更
+chsh -s "$zsh_path"
 
-if [ -f ~/ansible_arm64_mac.yml ]; then
-  ansible-galaxy collection install community.general
-  ansible-playbook ansible_arm64_mac.yml --ask-become-pass
-  rm ansible_arm64_mac.yml
-else
-  echo -e "🙅 ansible-playbook was not downloaded"
-fi
+echo "shellを $zsh_path に設定しました。"
 
 ###########
 # dotfiles
@@ -71,27 +67,27 @@ for file in ${DOT_FILES[@]}; do
 done
 
 # karabiner-elements
-REMAP_FILE_2=(karabiner.json)
+REMAP_FILE=(karabiner.json)
 
-for rfile2 in ${REMAP_FILE_2[@]}; do
-  if [ -a $HOME/.config/karabiner/$rfile2 ]; then
-    rm -f $HOME/.config/karabiner/$rfile2
-    ln -s $PATHES/$rfile2 $HOME/.config/karabiner/$rfile2
-    echo "$rfile2 のシンボリックリンク貼りました！"
+for rfile in ${REMAP_FILE[@]}; do
+  if [ -a $HOME/.config/karabiner/$rfile ]; then
+    rm -f $HOME/.config/karabiner/$rfile
+    ln -s $PATHES/$rfile $HOME/.config/karabiner/$rfile
+    echo "$rfile のシンボリックリンク貼りました！"
   else
-    echo "karabiner-elementsがありません"
+    echo "$rfile がありません"
   fi
 done
 
 # starship
-REMAP_FILE_3=(starship.toml)
+STARSHIP=(starship.toml)
 
-for rfile3 in ${REMAP_FILE_3[@]}; do
-  if [ -a $HOME/.config/$rfile3 ]; then
-    rm -f $HOME/.config/$rfile3
-    ln -s $PATHES/$rfile3 $HOME/.config/$rfile3
-    echo "$rfile3 のシンボリックリンク貼りました！"
+for starship in ${STARSHIP[@]}; do
+  if [ -a $HOME/.config/$starship ]; then
+    rm -f $HOME/.config/$starship
+    ln -s $PATHES/$starship $HOME/.config/$starship
+    echo "$starship のシンボリックリンク貼りました！"
   else
-    echo "starship.tomlがありません"
+    echo "$starship がありません"
   fi
 done
