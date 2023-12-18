@@ -48,6 +48,8 @@ echo "shellを $zsh_path に設定しました。"
 ###########
 # dotfiles
 ###########
+ghq get https://github.com/shusaid/dotfiles.git
+
 DOT_FILES=(.zshrc .zprofile .gitconfig .gitignore)
 PATHES="$HOME/src/github.com/shusaid/dotfiles"
 
