@@ -1,16 +1,12 @@
 export LANG=ja_JP.UTF-8
 export MINIO_HOST=localhost
 
-local BASIC=/usr/local/sbin:/usr/sbin:/usr/bin:/bin:/sbin
 local BREW=/opt/homebrew/bin:/usr/local/bin
 local RBENV=$HOME/.rbenv/shims
 local NODENV=$HOME/.nodenv/bin
-local MYSQL=/usr/local/opt/mysql@5.7/bin
-local GO=$HOME
-local GHQ=$GO/bin
 
-PATH=$BREW:$BASIC:$ZPLUG:$RBENV:$NODENV:$MYSQL:$GO:$GHQ:$PATH
-typeset -U path
+PATH=$BREW:$RBENV:$NODENV:$PATH
+typeset -U PATH
 export PATH
 
 # rbenv

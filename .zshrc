@@ -10,6 +10,8 @@ alias src='source'
 
 alias ..='cd ../'
 
+alias rm='trash -F'
+
 # bundle
 alias be='bundle exec'
 alias bi='bundle install'
