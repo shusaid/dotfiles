@@ -1,6 +1,58 @@
 #!/bin/bash
 
-DOT_FILES=(.gemrc .zshrc .zprofile .gitconfig .gitignore)
+###########
+# Homebrew
+###########
+echo -e "-----\nCheck Homebrew"
+if [ -f ~/.zshrc ]; then
+  if [ "`echo $PATH | grep '/opt/homebrew/bin'`" ]; then
+    echo '✅ Homebrew PATH already exist'
+  else
+    echo '🙅 Homebrew PATH was not exist\n...update .zshrc'
+    echo 'export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH' >> ~/.zshrc
+    source ~/.zshrc
+  fi
+else
+  echo '🙅 .zshrc was not exist\n...update .zshrc'
+  echo 'export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH' >> ~/.zshrc
+  source ~/.zshrc
+fi
+
+if type "brew" >/dev/null 2>&1; then
+  echo -e "✅ brew already exist"
+else
+  echo -e "🙅 Homebrew was not exist\nPlease install Homebrew"
+  open "https://brew.sh"
+  exit
+fi
+
+##########
+# Ansible
+##########
+echo -e "-----\nCheck Ansible"
+if type "ansible" >/dev/null 2>&1; then
+  echo -e "✅ Ansible already exist"
+else
+  echo -e "🙅 ansible was not installed"
+  brew install ansible
+fi
+
+echo -e "-----\nAnsible Deploy"
+cd ~
+curl -O -sfSL https://raw.githubusercontent.com/shusaid/dotfiles/master/ansible_arm64_mac.yml?token=GHSAT0AAAAAACLXNG4NEMDD5CBIKNZV2YHIZL7ZWLA
+
+if [ -f ~/ansible_arm64_mac.yml ]; then
+  ansible-galaxy collection install community.general
+  ansible-playbook ansible_arm64_mac.yml --ask-become-pass
+  rm ansible_arm64_mac.yml
+else
+  echo -e "🙅 ansible-playbook was not downloaded"
+fi
+
+###########
+# dotfiles
+###########
+DOT_FILES=(.zshrc .zprofile .gitconfig .gitignore)
 PATHES="$HOME/src/github.com/shusaid/dotfiles"
 
 for file in ${DOT_FILES[@]}; do
